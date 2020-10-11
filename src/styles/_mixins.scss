@@ -1,0 +1,35 @@
+@import "./variables";
+
+@function calcRem($size) {
+  $rem-size: $size / 16px;
+  @return #{$rem-size}rem;
+}
+
+@mixin font-size($size: calcRem(16px), $weight: normal) {
+  font-size: $size;
+  font-size: calcRem($size);
+  font-weight: $weight;
+}
+
+@mixin gradient350($start: $blue, $end: $blue-bright) {
+  background: $start;
+  background: linear-gradient(350deg, $start 40%, $end 85%);
+}
+
+@mixin font-set($family: $header-font, $font-size: calcRem(16px)) {
+  font-family: $family;
+
+  @include font-size();
+}
+
+@mixin success-error-box($bg: $success, $text: $black) {
+  background: $bg;
+  border: 1px solid darken($bg, 15);
+  color: $text;
+}
+
+@mixin breakpoint($width: $md) {
+  @media screen and (min-width: #{$width}) {
+    @content;
+  }
+}
