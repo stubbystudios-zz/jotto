@@ -1,0 +1,10 @@
+@import "../styles/variables";
+@import "../styles/mixins";
+
+.component-congrats {
+  @include success-error-box();
+
+  p {
+    margin-bottom: 0;
+  }
+}

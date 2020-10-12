@@ -1,4 +1,5 @@
 import React from 'react';
+import './Congrats.scss';
 import PropTypes from 'prop-types';
 
 /**
@@ -10,7 +11,7 @@ import PropTypes from 'prop-types';
 const Congrats = (props) => {
   if (props.success) {
     return (
-      <section data-test='component-congrats'>
+      <section data-test='component-congrats' className='component-congrats'>
         <p data-test='congrats-message'>Congratulations! You guessed the word!</p>
       </section>
     );

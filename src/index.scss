@@ -55,9 +55,8 @@ label {
   width: 600px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App {
+  margin-top: calcRem(40px);
 }
 
 em {

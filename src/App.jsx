@@ -8,7 +8,11 @@ class App extends Component {
       <div className="App">
         <div className="container">
           <Congrats success={true} />
-          <GuessedWords guessedWords={[]} />
+          <GuessedWords guessedWords={[
+            { guessedWord: 'train', letterMatchCount: 3 },
+            { guessedWord: 'party', letterMatchCount: 3 },
+            { guessedWord: 'freak', letterMatchCount: 3 },
+          ]} />
         </div>
       </div>
     );

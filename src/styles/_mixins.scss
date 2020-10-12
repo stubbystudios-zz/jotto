@@ -25,7 +25,10 @@
 @mixin success-error-box($bg: $success, $text: $black) {
   background: $bg;
   border: 1px solid darken($bg, 15);
+  border-radius: 8px;
   color: $text;
+  margin-bottom: calcRem(16px);
+  padding: calcRem(16px);
 }
 
 @mixin breakpoint($width: $md) {
