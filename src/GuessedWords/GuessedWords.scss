@@ -1,0 +1,21 @@
+@import "../styles/variables";
+@import "../styles/mixins";
+
+.guessed-words-list {
+  .guess-words-header {
+    background: $black-600;
+    color: $white;
+  }
+
+  li {
+    display: flex;
+
+    div {
+      padding: calcRem(8px);
+    }
+  }
+
+  .guess-word-col {
+    width: 30%;
+  }
+}

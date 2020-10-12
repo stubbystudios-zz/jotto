@@ -1,4 +1,5 @@
 import React from 'react';
+import './GuessedWords.scss';
 import PropTypes from 'prop-types';
 
 const GuessedWords = (props) => {
@@ -14,14 +15,18 @@ const GuessedWords = (props) => {
     );
   } else {
     const guessedWordsRows = props.guessedWords.map((word, index) => (
-      <div
+      <li
         data-test='guessed-word'
         className='guessed-word'
         key={index}
       >
-        <div className='guess-word-result guess-word-col'>{word.guessedWord}</div>
-        <div className='guess-word-result matching-letter-col'>{word.letterMatchCount}</div>
-      </div>
+        <div className='guess-word-col'>
+          {word.guessedWord}
+        </div>
+        <div className='matching-letter-col' >
+          {word.letterMatchCount}
+        </div >
+      </li >
     ));
     contents = (
       <section
@@ -31,11 +36,13 @@ const GuessedWords = (props) => {
         <header>
           <h3>Guessed Words</h3>
         </header>
-        <div className='guessed-words-list'>
-          <div className='guess-word-header guess-word-col'>Guess</div>
-          <div className='guess-word-header matching-letter-col'>Matching Letters</div>
+        <ul className='guessed-words-list'>
+          <li className='guess-words-header'>
+            <div className='guess-word-col'>Guess</div>
+            <div className='matching-letter-col'>Matching Letters</div>
+          </li>
           {guessedWordsRows}
-        </div>
+        </ul>
       </section>
     )
   }
