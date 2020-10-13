@@ -1,9 +1,18 @@
+import { actionTypes } from '../actions/actions';
+
 /**
  * @function guessedWordsReducer
  * @param {array} state - Array of guessed words.
  * @param {object} action - Action to be reduced.
  * @returns {array} - New guessedWords state.
  */
-export default (state, action) => {
-  return null;
+
+// If no words guessed, default is an empty array
+export default (state = [], action) => {
+  switch (action.type) {
+    // If we receive guessWord action, update state
+    case actionTypes.GUESS_WORD:
+      return [...state, action.payload];
+    default: return state;
+  }
 }
