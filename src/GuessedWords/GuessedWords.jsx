@@ -4,16 +4,7 @@ import PropTypes from 'prop-types';
 
 const GuessedWords = (props) => {
   let contents;
-  if (props.guessedWords.length === 0) {
-    contents = (
-      <p
-        data-test='guess-instructions'
-        className='guess-instructions'
-      >
-        Try to guess the secret word!
-      </p>
-    );
-  } else {
+  if (props.guessedWords.length !== 0) {
     const guessedWordsRows = props.guessedWords.map((word, index) => (
       <li
         data-test='guessed-word'

@@ -17,6 +17,12 @@ const setup = (initialState = {}) => {
   return wrapper;
 }
 
+test('renders instructions to guess a word', () => {
+  let wrapper = setup({ guessedWords: [] });
+  const instructions = findByTestAttr(wrapper, 'guess-instructions');
+  expect(instructions.text().length).not.toBe(0);
+});
+
 describe('render', () => {
   describe('word has not been guessed', () => {
     let wrapper;
