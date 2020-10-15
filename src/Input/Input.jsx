@@ -5,6 +5,31 @@ import './Input.scss';
 import { guessWord } from '../actions/actions';
 
 export class UnconnectedInput extends Component {
+  /**
+   * @method constructor
+   * @param {object} props - Component props
+   * @returns {undefined}
+   */
+  constructor(props) {
+    super(props);
+
+    // Initialize state
+    this.state = { currentGuess: null }
+
+    // Bind this for submitGuessedWord
+    this.submitGuessedWord = this.submitGuessedWord.bind(this);
+  }
+
+  submitGuessedWord(e) {
+    e.preventDefault();
+    const guessedWord = this.state.currentGuess;
+
+    if (guessedWord && guessedWord.length > 0) {
+      this.props.guessWord(guessedWord);
+      this.setState({ currentGuess: '' })
+    }
+  }
+
   render() {
     const label = (
       <p
@@ -15,19 +40,22 @@ export class UnconnectedInput extends Component {
       </p>
     );
     const contents = this.props.success
-      ? null : (
+      ? null
+      : (
         <form className='guess-form'>
           <input
             data-test='input-box'
             className='input-box'
             type='text'
+            value={this.state.currentGuess}
+            onChange={(e) => this.setState({ currentGuess: e.target.value })}
             placeholder='enter guess'
           />
           <button
             data-test='submit-button'
             className='submit-button'
-            onClick={() => this.props.guessWord('train')}
             type='submit'
+            onClick={(e) => this.submitGuessedWord(e)}
           >
             Submit
           </button>
