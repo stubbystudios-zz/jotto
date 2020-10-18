@@ -14,7 +14,7 @@ export class UnconnectedInput extends Component {
     super(props);
 
     // Initialize state
-    this.state = { currentGuess: null }
+    this.state = { currentGuess: '' }
 
     // Bind this for submitGuessedWord
     this.submitGuessedWord = this.submitGuessedWord.bind(this);
@@ -31,14 +31,6 @@ export class UnconnectedInput extends Component {
   }
 
   render() {
-    const label = (
-      <p
-        data-test='guess-instructions'
-        className='guess-instructions'
-      >
-        Try to guess the secret word!
-      </p>
-    );
     const contents = this.props.success
       ? null
       : (
@@ -63,7 +55,6 @@ export class UnconnectedInput extends Component {
       )
     return (
       <section data-test='component-input' className='component-input'>
-        {label}
         {contents}
       </section>
     )

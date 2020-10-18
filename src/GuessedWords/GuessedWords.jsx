@@ -1,6 +1,6 @@
 import React from 'react';
-import './GuessedWords.scss';
 import PropTypes from 'prop-types';
+import './GuessedWords.scss';
 
 const GuessedWords = (props) => {
   let contents;
@@ -16,9 +16,9 @@ const GuessedWords = (props) => {
         </div>
         <div className='matching-letter-col' >
           {word.letterMatchCount}
-        </div >
-      </li >
-    ));
+        </div>
+      </li>
+    )).reverse();
     contents = (
       <section
         data-test='guessed-words'

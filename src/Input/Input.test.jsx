@@ -16,12 +16,6 @@ const setup = (initialState = {}) => {
   return wrapper;
 }
 
-test('renders instructions to guess a word', () => {
-  let wrapper = setup({ guessedWords: [] });
-  const instructions = findByTestAttr(wrapper, 'guess-instructions');
-  expect(instructions.text().length).not.toBe(0);
-});
-
 describe('render', () => {
   describe('word has not been guessed', () => {
     let wrapper;
@@ -109,5 +103,10 @@ describe('`guessWord` action creator', () => {
   test('calls `guessWord` with input value as argument', () => {
     const guessedWordArg = guessWordMock.mock.calls[0][0];
     expect(guessedWordArg).toBe(guessedWord);
+  });
+
+  test('input box clears on submit', () => {
+    // Input box's value should be an empty string
+    expect(wrapper.state('currentGuess')).toBe('');
   });
 });

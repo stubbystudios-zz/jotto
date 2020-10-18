@@ -43,6 +43,7 @@ describe('redux properties', () => {
     expect(getSecretWord).toBeInstanceOf(Function);
   });
 });
+
 test('`getSecretWord` runs on App mount', () => {
   const getSecretWordMock = jest.fn();
 
@@ -61,4 +62,4 @@ test('`getSecretWord` runs on App mount', () => {
   // Check to see if the mock ran
   const getSecretWordCallCount = getSecretWordMock.mock.calls.length;
   expect(getSecretWordCallCount).toBe(1);
-})
+});

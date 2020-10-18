@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+
 import { findByTestAttr, checkProps } from '../../test/testUtils';
 import GuessedWords from './GuessedWords';
 
@@ -8,7 +9,7 @@ const defaultProps = {
 };
 
 /**
- * Factory function to create a ShallowWraper for the GuessedWords component.
+ * Factory function to create a ShallowWrapper for the GuessedWords component.
  * @function setup
  * @param {object} props - Component props specific to this setup.
  * @returns {ShallowWrapper}
