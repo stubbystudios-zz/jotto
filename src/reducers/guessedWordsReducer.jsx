@@ -13,6 +13,8 @@ export default (state = [], action) => {
     // If we receive guessWord action, update state
     case actionTypes.GUESS_WORD:
       return [...state, action.payload];
+    case (actionTypes.RESET_GAME):
+      return [];
     default: return state;
   }
 }

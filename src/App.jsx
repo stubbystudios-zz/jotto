@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { getSecretWord } from './actions/actions';
 import Congrats from './Congrats/Congrats';
 import GuessedWords from './GuessedWords/GuessedWords';
-import InputText from './InputText/InputText';
 import Input from './Input/Input';
+import NewWordButton from './NewWordButton/NewWordButton';
+
+import {
+  getSecretWord,
+  resetGame,
+  setUserSecretWord,
+  setUserEntering
+} from './actions/actions';
+import EnterWordButton from './EnterWordButton/EnterWordButton';
+import EnterWordForm from './EnterWordForm/EnterWordForm';
 
 export class UnconnectedApp extends Component {
 
@@ -19,26 +27,48 @@ export class UnconnectedApp extends Component {
   }
 
   render() {
+    let contents;
+    if (this.props.userEnter === 'inProgress') {
+      contents = (
+        <EnterWordForm formAction={this.props.setUserSecretWord} />
+      );
+    } else {
+      contents = (
+        <div>
+          <Congrats success={this.props.success} />
+          <NewWordButton display={this.props.success || this.props.gaveUp}
+            resetAction={this.props.resetGame} />
+          {/* <InputText guessedWords={this.props.guessedWords} /> */}
+          <Input />
+          <GuessedWords guessedWords={this.props.guessedWords} />
+          <EnterWordButton display={this.props.guessedWords.length === 0}
+            buttonAction={this.props.setUserEntering} />
+        </div>
+      );
+    }
     return (
       <div className='App'>
         <div className='container'>
-          <header>
+          <header className='app-header'>
             <h1>Jotto Word Game</h1>
-            {/* <p>{this.props.secretWord}</p> */}
+            <p>{this.props.secretWord}</p>
           </header>
-          <Congrats success={this.props.success} />
-          <InputText guessedWords={this.props.guessedWords} />
-          <Input />
-          <GuessedWords guessedWords={this.props.guessedWords} />
+          {contents}
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  const { success, guessedWords, secretWord } = state;
-  return { success, guessedWords, secretWord };
+const mapStateToProps = ({ success, guessedWords, secretWord, gaveUp, userEnter }) => {
+  return { success, guessedWords, secretWord, gaveUp, userEnter };
 }
 
-export default connect(mapStateToProps, { getSecretWord })(UnconnectedApp);
+const actions = {
+  getSecretWord,
+  resetGame,
+  setUserSecretWord,
+  setUserEntering,
+}
+
+export default connect(mapStateToProps, actions)(UnconnectedApp);

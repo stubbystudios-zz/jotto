@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 
 import { findByTestAttr, storeFactory } from '../../test/testUtils';
 import Input, { UnconnectedInput } from './Input';
+import { UnconnectedApp } from '../App';
 
 /**
  * Factory function to create a ShallowWrapper for the GuessedWords component.
@@ -12,7 +13,7 @@ import Input, { UnconnectedInput } from './Input';
  */
 const setup = (initialState = {}) => {
   const store = storeFactory(initialState);
-  const wrapper = shallow(<Input store={store} />).dive().dive();
+  const wrapper = shallow(<Input store={store} />).dive();
   return wrapper;
 }
 
@@ -38,6 +39,11 @@ describe('render', () => {
       const submitButton = findByTestAttr(wrapper, 'submit-button');
       expect(submitButton.length).toBe(1);
     });
+
+    test('renders "give up" button', () => {
+      const giveUpButton = findByTestAttr(wrapper, 'give-up-button');
+      expect(giveUpButton.length).toBe(1)
+    })
   });
 
   describe('word has been guessed', () => {
@@ -78,17 +84,32 @@ describe('redux props', () => {
   });
 });
 
+test('calls `giveUp` prop upon "Give up" button click', () => {
+  // Create a mock function so we can see whether it's called on click
+  const giveUpMock = jest.fn();
+
+  // Set up Input, with giveUpMock as a prop
+  const wrapper = shallow(<UnconnectedInput giveUp={giveUpMock} />);
+
+  // Simulate click on giveUp button
+  const giveUpButton = findByTestAttr(wrapper, 'give-up-button');
+  giveUpButton.simulate('click', { preventDefault() { } });
+
+  // Expect the mock to have been called once
+  expect(giveUpMock.mock.calls.length).toBe(1);
+});
+
 describe('`guessWord` action creator', () => {
   let guessWordMock;
   let wrapper;
   const guessedWord = 'train';
+
   beforeEach(() => {
     guessWordMock = jest.fn();
 
     wrapper = shallow(<UnconnectedInput guessWord={guessWordMock} />);
 
-    // Add value to input box
-    wrapper.setState({ currentGuess: guessedWord });
+    wrapper.instance().inputBox.current = { value: guessedWord };
 
     // Simulate click on submit button
     const submit = findByTestAttr(wrapper, 'submit-button');
@@ -107,6 +128,6 @@ describe('`guessWord` action creator', () => {
 
   test('input box clears on submit', () => {
     // Input box's value should be an empty string
-    expect(wrapper.state('currentGuess')).toBe('');
+    expect(wrapper.instance().inputBox.current.value).toBe('');
   });
 });

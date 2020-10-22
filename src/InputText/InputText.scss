@@ -1,0 +1,18 @@
+@import "../styles/variables";
+@import "../styles/mixins";
+
+.input-text-wrapper {
+  display: flex;
+  height: calcRem(16px);
+  margin-bottom: calcRem(16px);
+
+  .failed-guess {
+    align-items: center;
+    display: flex;
+  }
+
+  p {
+    margin-bottom: 0;
+    margin-right: calcRem(16px);
+  }
+}

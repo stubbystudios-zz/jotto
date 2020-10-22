@@ -1,17 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './InputText.scss';
+import TotalGuesses from '../TotalGuesses/TotalGuesses';
+
 const InputText = (props) => {
   const guessInstructions = (
     props.guessedWords.length === 0
       ? <p
         data-test='guess-instructions'
         className='guess-instructions'
-      >
-        Try to guess the secret word!</p>
-      : '');
+      >Try to guess the secret word!</p>
+      : <div className='failed-guess'>
+        <TotalGuesses guessCount={props.guessedWords.length} />
+      </div>);
   return (
-    <div className='label-wrapper'>
+    <div className='input-text-wrapper'>
       {guessInstructions}
     </div>
   );

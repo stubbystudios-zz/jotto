@@ -7,24 +7,13 @@
   margin-top: calcRem(16px);
 
   .input-box {
-    border: 1px solid $black-500;
-    border-radius: 4px;
     display: block;
     flex-grow: 1;
-    margin-right: calcRem(8px);
-    padding: calcRem(8px);
-  }
 
-  .submit-button {
-    background: $brand-e;
-    border: 0;
-    border-radius: 20px;
-    color: $white;
-    padding: calcRem(8px) calcRem(16px);
+    @include inputBox();
   }
 }
 
-.label-wrapper {
-  height: calcRem(16px);
-  margin-bottom: calcRem(16px);
+.give-up-button {
+  @include button($brand-a, $white);
 }

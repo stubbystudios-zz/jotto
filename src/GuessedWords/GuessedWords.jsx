@@ -4,13 +4,22 @@ import './GuessedWords.scss';
 
 const GuessedWords = (props) => {
   let contents;
-  if (props.guessedWords.length !== 0) {
+  if (props.guessedWords.length === 0) {
+    contents = (
+      <p
+        data-test='guess-instructions'
+        className='guess-instructions'>
+        Try to guess the secret word!
+      </p>
+    );
+  } else {
     const guessedWordsRows = props.guessedWords.map((word, index) => (
       <li
         data-test='guessed-word'
         className='guessed-word'
         key={index}
       >
+        <div className='guess-count-col' data-test='guessed-word-index'>{index + 1}</div>
         <div className='guess-word-col'>
           {word.guessedWord}
         </div>
@@ -29,6 +38,7 @@ const GuessedWords = (props) => {
         </header>
         <ul className='guessed-words-list'>
           <li className='guess-words-header'>
+            <div className='guess-count-col'>#</div>
             <div className='guess-word-col'>Guess</div>
             <div className='matching-letter-col'>Matching Letters</div>
           </li>

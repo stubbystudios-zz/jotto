@@ -33,6 +33,11 @@ describe('if there are no words guessed', () => {
     const component = findByTestAttr(wrapper, 'component-guessed-words');
     expect(component.length).toBe(1);
   });
+
+  test('renders instructions to guess a word', () => {
+    const instructions = findByTestAttr(wrapper, 'component-guessed-words');
+    expect(instructions.text().length).not.toBe(0);
+  });
 });
 
 describe('if there are words guessed', () => {
@@ -59,5 +64,12 @@ describe('if there are words guessed', () => {
   test('correct number of guessed words', () => {
     const guessedWordsNodes = findByTestAttr(wrapper, 'guessed-word');
     expect(guessedWordsNodes.length).toBe(guessedWords.length);
+  });
+
+  test('includes guess word index for each word', () => {
+    const guessWordIndexes = findByTestAttr(wrapper, 'guessed-word-index')
+    const indexTextSet = new Set(guessWordIndexes.map(wrapper => wrapper.text()));
+    const expectedSet = new Set(guessedWords.map((word, index) => (index + 1).toString()));
+    expect(indexTextSet).toEqual(expectedSet);
   });
 });
