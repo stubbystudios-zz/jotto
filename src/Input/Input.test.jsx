@@ -3,7 +3,6 @@ import { shallow } from 'enzyme';
 
 import { findByTestAttr, storeFactory } from '../../test/testUtils';
 import Input, { UnconnectedInput } from './Input';
-import { UnconnectedApp } from '../App';
 
 /**
  * Factory function to create a ShallowWrapper for the GuessedWords component.
@@ -13,7 +12,7 @@ import { UnconnectedApp } from '../App';
  */
 const setup = (initialState = {}) => {
   const store = storeFactory(initialState);
-  const wrapper = shallow(<Input store={store} />).dive();
+  const wrapper = shallow(<Input store={store} />).dive().dive();
   return wrapper;
 }
 
@@ -23,7 +22,7 @@ describe('render', () => {
     beforeEach(() => {
       const initialState = { success: false };
       wrapper = setup(initialState);
-    });
+    })
 
     test('renders component without error', () => {
       const component = findByTestAttr(wrapper, 'component-input');
@@ -40,10 +39,10 @@ describe('render', () => {
       expect(submitButton.length).toBe(1);
     });
 
-    test('renders "give up" button', () => {
+    test('renders `give up` button', () => {
       const giveUpButton = findByTestAttr(wrapper, 'give-up-button');
       expect(giveUpButton.length).toBe(1)
-    })
+    });
   });
 
   describe('word has been guessed', () => {
@@ -52,6 +51,7 @@ describe('render', () => {
       const initialState = { success: true };
       wrapper = setup(initialState)
     });
+
     test('renders component without error', () => {
       const component = findByTestAttr(wrapper, 'component-input');
       expect(component.length).toBe(1);

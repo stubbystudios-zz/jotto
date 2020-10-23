@@ -3,8 +3,6 @@ import { shallow } from 'enzyme';
 
 import { storeFactory } from '../test/testUtils';
 import App, { UnconnectedApp } from './App';
-import secretWordReducer from './reducers/secretWordReducer';
-import { resetGame } from './actions/actions';
 
 /**
  * @function setup
@@ -49,8 +47,8 @@ describe('redux properties', () => {
   });
 
   test('has access to `guessedWords` state', () => {
-    const guessedWordProp = wrapper.instance().props.guessedWords;
-    expect(guessedWordProp).toBe(guessedWords);
+    const guessedWordsProp = wrapper.instance().props.guessedWords;
+    expect(guessedWordsProp).toEqual(guessedWords);
   });
 
   test('`getSecretWord` action creator is a function on the props', () => {

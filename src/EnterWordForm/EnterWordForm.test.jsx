@@ -27,7 +27,7 @@ describe('render EnterWordForm', () => {
 
   test('renders instructions', () => {
     const wrapper = setup();
-    const instruction = findByTestAttr(wrapper, 'enter-word-instructions');
+    const instructions = findByTestAttr(wrapper, 'enter-word-instructions');
     expect(instructions.length).toBe(1);
   });
 
@@ -52,7 +52,7 @@ describe('render EnterWordForm', () => {
 describe('submit click action', () => {
   let setUserSecretWordMock;
   let wrapper;
-  const userSecretWord = 'linch';
+  const userSecretWord = 'lunch';
 
   beforeEach(() => {
     // Create a mock function for `setUserSecretWord`

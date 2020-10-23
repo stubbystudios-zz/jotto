@@ -24,7 +24,7 @@ describe('render', () => {
 
   test('renders no text when `display` prop is false', () => {
     const wrapper = setup({ display: false });
-    const component = findByTestAttr(wrapper, 'component-enter-word=button');
+    const component = findByTestAttr(wrapper, 'component-enter-word-button');
     expect(component.text()).toBe('');
   });
 
